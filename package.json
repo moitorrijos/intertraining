@@ -1,0 +1,20 @@
+{
+  "name": "courses-pmts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass sass/ -o css/ --source-map true --output-style compressed -w",
+    "compile:css": "node-sass sass/ -o css/ --source-map true --output-style compressed",
+    "browsersync": "browser-sync start --proxy 'http://courses-pmts.local' --files '**/*' --no-open",
+    "watch": "npm run sass & npm run browsersync",
+    "bundle": "dir-archiver --src . --dest ../courses-pmts.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dir-archiver": "^1.2.0",
+    "node-sass": "^6.0.0"
+  }
+}

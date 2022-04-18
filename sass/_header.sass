@@ -1,0 +1,94 @@
+.top-bar
+  color: $primary-color
+  justify-content: flex-end
+  gap: 20px
+  font-family: $font-family
+
+  h2
+    margin: 0
+
+  a
+    font-size: 0.9rem
+    text-decoration: none
+    color: darken($primary-color, 5%)
+
+.top-image
+  height: 160px
+  background-image: url(../images/background-pmts-courses.jpg)
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: top center
+
+header
+  background-color: $secondary-color
+  
+.search-navigation
+  display: flex
+  align-items: center
+  justify-content: space-between
+  font-size: 0.9rem
+  position: relative
+
+  .logo
+    position: absolute
+    z-index: 2
+    top: -2rem
+    left: 2rem
+    width: 140px
+    height: 140px
+
+    img
+      filter: drop-shadow(0 3px 9px transparentize($dark-gray, 0.5))
+
+form.search-form
+  display: flex
+  padding: 0
+  margin-left: 160px
+  border: 1px solid lighten($primary-color, 10%)
+  border-radius: 6px
+
+  button.search-submit
+    background-color: transparent
+    color: $white
+    padding: 0 1rem
+    border: none
+    appearance: none
+  
+  input.search-field
+    display: block
+    border: none
+    padding: 1rem
+    width: minmax(240px, 400px)
+    background-color: transparent
+    color: $white
+
+    &::placeholder, &::-moz-placeholder
+      color: $white
+
+ul.nav
+  list-style: none
+  margin: 0
+  padding: 0
+  display: flex
+  font-family: $font-family
+
+  li
+    a
+      display: block
+      text-decoration: none
+      padding: 1.5rem
+      color: $white
+
+      &:hover
+        background: darken($secondary-color, 2%)
+
+    &.current-menu-item a
+      background: darken($secondary-color, 5%)
+
+    &.logout-button a
+      background: $red
+
+    @media screen and (max-width: 1000px)
+      i._mi
+        margin: 0
+        display: block

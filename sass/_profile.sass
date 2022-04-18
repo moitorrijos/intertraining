@@ -1,0 +1,32 @@
+.profile-tabs
+  button
+    padding: 0.5rem 3rem
+    margin: 0
+    -moz-appearance: none
+    -webkit-appearance: none
+    background: lighten($gray, 10%)
+    border: 1px solid darken($gray, 5%)
+    outline: 0
+    position: relative
+    top: 1px
+
+    &.current-tab
+      background: $white
+      border-bottom: 1px solid $white
+
+    &:first-child
+      border-top-left-radius: 8px
+
+    &:last-child
+      border-top-right-radius: 8px
+
+.profile-tabs-body
+  padding: 2rem 4rem
+  border: 1px solid darken($gray, 5%)
+  border-radius: 0 8px 8px 8px
+  
+  & > div
+    display: none
+
+  .current-section
+    display: block

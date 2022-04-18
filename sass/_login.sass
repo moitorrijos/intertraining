@@ -1,0 +1,50 @@
+body.home
+  min-height: 100vh
+  background-image: url('../images/deck-life-at-sea.jpg')
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: right top
+
+  .login-area
+    box-sizing: border-box
+    min-height: 100vh
+    background-color: $secondary-color
+    color: $white
+    width: 100%
+    max-width: 420px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    padding: 3rem
+
+    .logo
+      max-width: 160px
+
+form.cs-login-form
+  width: 100%
+  font-size: 14px
+  color: lighten($dark-gray, 5%)
+
+  label, input
+    display: block
+
+  label
+    color: $white
+    margin: 4px 0
+
+  input[type="text"], input[type="password"]
+    box-sizing: border-box
+    padding: 0.75rem 0.5rem
+    width: 100%
+    border: 1px solid lighten($dark-gray, 20%)
+    margin-bottom: 1rem
+
+    &.red-border
+      border: 2px solid $red
+
+  input[type="submit"]
+    @include button($white, $primary-color)
+    padding: 0.75rem 0.5rem
+    margin-top: 2rem
+    text-transform: uppercase

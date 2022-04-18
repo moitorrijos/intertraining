@@ -1,0 +1,66 @@
+body.single-courses
+  display: grid
+  grid-template-rows: auto 1fr
+  min-height: 100vh
+  
+.course-header
+  background: $secondary-color
+  color: $white
+
+  a.back-button
+    display: block
+    @include button($white, $secondary-color)
+    padding: 0.75rem 1.25rem
+
+.course-container
+  
+  display: grid
+  grid-template-columns: 420px 1fr
+
+nav.course-navigation
+  position: relative
+  z-index: 2
+  background-color: lighten($gray, 5%)
+
+  a
+    display: block
+    padding: 1rem 1.5rem
+    background-color: lighten($gray, 10%)
+    color: $secondary-color
+    text-decoration: none
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    font-size: 1rem
+    gap: 10px
+
+    i.fas
+      font-size: 0.8rem
+
+    &:hover
+      background-color: lighten($gray, 5%)
+
+    &.current-section
+      position: relative
+      box-shadow: -5px 2px 5px transparentize($dark-gray, 0.85)
+      z-index: 2
+      background-color: $white
+      border-right: none
+
+.course-section
+  position: relative
+  z-index: 1
+  box-shadow: -10px 0 20px transparentize($dark-gray, 0.75)
+  
+  h1
+    padding: 2rem 4rem
+    margin: 0
+    line-height: 1
+
+  section
+    padding: 0 4rem
+    padding-bottom: 4rem
+    display: none
+
+    &#description
+      display: block
