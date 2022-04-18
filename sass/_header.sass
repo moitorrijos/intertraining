@@ -14,7 +14,7 @@
 
 .top-image
   height: 160px
-  background-image: url(../images/ship-images-background.jpg)
+  background-image: url(../images/background-courses.jpg)
   background-size: cover
   background-repeat: no-repeat
   background-position: top center
@@ -44,7 +44,7 @@ form.search-form
   display: flex
   padding: 0
   margin-left: 160px
-  border: 1px solid lighten($primary-color, 10%)
+  border: 1px solid $white
   border-radius: 6px
 
   button.search-submit
@@ -58,11 +58,11 @@ form.search-form
     display: block
     border: none
     padding: 1rem
-    width: minmax(240px, 400px)
+    width: 240px
     background-color: transparent
     color: $white
 
-    &::placeholder, &::-moz-placeholder
+    &::placeholder
       color: $white
 
 ul.nav
