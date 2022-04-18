@@ -1,4 +1,4 @@
-<?php if ( !is_singular('courses') ) : ?>
+<?php if ( !is_front_page() ) : ?>
 
 <footer>
 

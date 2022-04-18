@@ -4,7 +4,7 @@ function register_styles_scripts() {
 
   wp_enqueue_style(
     'google_fonts',
-    'https://fonts.googleapis.com/css2?family=Lato&family=Raleway&family=Rokkitt:wght@500',
+    'https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Montserrat:wght@300;500&display=swap',
     array(), THEMEVERSION, 'all' );
     
   wp_enqueue_style(

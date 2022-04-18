@@ -13,7 +13,7 @@
 
     <p class="centered-container">
 
-      In this section you will find all your course materials and exams. If you don't see the course materials you requested, please contact support at <a href="mailto:info@panamamaritimetraining.com">info@panamamaritimetraining.com</a> or call us at <a href="tel:+5073220013">+(507) 322-0013</a>
+      In this section you will find all your course materials and exams. If you don't see the course materials you requested, please contact support at <a href="mailto:info@intermaritime.org">info@intermaritime.org</a> or call us at <a href="tel:+5073220013">+(507) 322-0013</a>
 
     </p>
 

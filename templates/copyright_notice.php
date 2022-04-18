@@ -1,13 +1,13 @@
 <p>
   This software is the intelectual property of
-  Panama Maritime Training Services, Inc.
+  InterMaritime Certification Services,
   All rights reserved &copy; <?php echo date( 'Y' ); ?>.
   For more information contact us at
-  <a href="mailto:info@panamamaritimetraining.com">
-    info@panamamaritimetraining.com
+  <a href="mailto:info@intermaritime.org">
+    info@intermaritime.org
   </a> and check our
   <a
-    href="https://panamamaritimetraining.com/privacy-policy/"
+    href="https://icsclass.org/privacy-policy/"
     target="_blank"
     rel="noopener noreferrer"
   >Privacy Policy Page</a>.

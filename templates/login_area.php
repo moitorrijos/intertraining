@@ -1,10 +1,8 @@
 <div class="login-area">
 
-  <div class="logo">
-
-    <img src="<?php echo IMAGESPATH . '/pmts-logo.png'; ?>" alt="PMTS Logo">
-
-  </div>
+    <div class="logo">
+      <?php echo get_custom_logo(); ?>
+    </div>
 
   <?php get_template_part( 'templates/login_form' ); ?>
 
