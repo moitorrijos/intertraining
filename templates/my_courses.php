@@ -43,7 +43,7 @@
 
       <div class="course-title">
         
-        <p><?php the_title(); ?></p>
+        <h2><?php the_title(); ?></h2>
     
       </div>
 
@@ -61,8 +61,6 @@
       
       </figure>
 
-      <h2 class="course-abbr"><?php the_field('abbr'); ?></h2>
-      
     </a>
 
     <?php endwhile; else : ?>

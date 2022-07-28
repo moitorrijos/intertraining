@@ -29,7 +29,7 @@ $back = wp_get_referer();
 
       <i class="fas fa-info-circle"></i>
       
-      Course Description
+      <?php the_field('course_description_title'); ?>
     
     </a>
   
@@ -56,14 +56,6 @@ $back = wp_get_referer();
       Exam
     
     </a>
-
-    <a href="#competences">
-
-      <i class="fa fa-user-tie"></i>
-    
-      Competences Obtained on Board
-
-    </a>
   
   </nav>
 
@@ -87,7 +79,7 @@ $back = wp_get_referer();
 
     <section id="description">
     
-      <h2>Course Description</h2>
+      <h2><?php the_field('course_description_title'); ?></h2>
 
       <?php the_field('course_description'); ?>
 
@@ -219,71 +211,6 @@ $back = wp_get_referer();
       
       </button>
     
-    </section>
-
-    <section id="competences">
-
-        <?php
-          $current_user_id = get_current_user_id();
-          $current_user = wp_get_current_user();
-          $user_courses = get_field('courses_taken', 'user_' . $current_user_id);
-          $user_country_of_birth = get_field('country_of_birth', 'user_' . $current_user_id);
-          $user_nationality = get_field('nationality', 'user_' . $current_user_id);
-          $user_passport_id = get_field('passportid_no', 'user_' . $current_user_id);
-          $user_date_of_birth = get_field('date_of_birth', 'user_' . $current_user_id);
-          $user_date_of_birth = $user_date_of_birth ? DateTime::createFromFormat('Ymd', $user_date_of_birth)->format('j F Y') : '';
-        ?>
-    
-        <h3>Declaration on Competences Obtained on Board</h3>
-
-        <p>
-            I, <span class="undies"><?php echo $current_user->first_name; ?></span> with identification No. <span class="undies"><?php echo $user_passport_id; ?></span>, of <span class="undies"><?php echo $user_nationality; ?></span> nationality, and currently holding the License of <span class="undies">Panama</span>, with full use of my practical, theoretical and technical knowledge, I declare, the following skills, I have acquired both in courses and work done on land and on board.
-        <p>
-
-        <?php
-
-          if ( have_rows('competence') ) : 
-
-            while ( have_rows('competence') ) :
-
-              the_row();
-
-              $competence_section = get_sub_field('competence_section'); 
-
-        ?>
-
-          <h3><?php echo $competence_section['competence_section_title']; ?></h3>
-
-          <p><?php echo $competence_section['competence_description']; ?></p>
-
-          <?php
-
-            $competence_section_list = $competence_section['competence_section_list'];
-
-
-            if ( is_array( $competence_section_list ) ) :
-
-          ?>
-            
-              <?php
-
-                  foreach ( $competence_section_list as $competence ) :
-                
-              ?>
-
-                <p class="checkbox-grid">
-                  <input type="checkbox" name="competence" id="competence" checked="<?php echo $competence['checked']; ?>">
-                  <label for="competence">
-                    <?php echo $competence['competence']; ?>
-                  </label>
-                </p>
-
-              <?php endforeach; ?>
-            
-          <?php endif; ?>
-
-        <?php endwhile; endif; ?>
-
     </section>
 
   </div>
