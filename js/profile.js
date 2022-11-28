@@ -21,7 +21,7 @@
     })
   }
 
+  showSection(coursesSectionButton, coursesSection)
   showSection(profileSectionButton, profileSection)
   showSection(passwordSectionButton, passwordSection)
-  showSection(coursesSectionButton, coursesSection)
 })()

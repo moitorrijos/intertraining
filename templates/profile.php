@@ -7,25 +7,22 @@
 <?php 
   $current_user_id = get_current_user_id();
   $current_user = wp_get_current_user();
-  $user_courses = get_field('courses_taken', 'user_' . $current_user_id);
+  $user_courses = get_my_courses_id($current_user_id);
   $user_country_of_birth = get_field('country_of_birth', 'user_' . $current_user_id);
   $user_nationality = get_field('nationality', 'user_' . $current_user_id);
   $user_passport_id = get_field('passportid_no', 'user_' . $current_user_id);
   $user_date_of_birth = get_field('date_of_birth', 'user_' . $current_user_id);
   $user_date_of_birth = $user_date_of_birth ? DateTime::createFromFormat('Ymd', $user_date_of_birth)->format('j F Y') : '';
-  $user_passport_file = get_field('passport-id', 'user_' . $current_user_id);
-  $user_company_letter = get_field('company_letter', 'user_' . $current_user_id);
-  $user_panama_license = get_field('panama_license', 'user_' . $current_user_id);
 ?>
 
 <div class="main-container main-padding fill-height">
 
   <div class="profile-tabs">
   
-    <button class="profile-section-button current-tab">
-      Profile Details
-    </button><button class="courses-section-button">
+    <button class="courses-section-button current-tab">
       Completed Courses and Certificates
+    </button><button class="profile-section-button">
+      Your Details
     </button><button class="password-section-button">
       Change Password
     </button>
@@ -33,8 +30,64 @@
   </div>
   
   <div class="profile-tabs-body">
+
+    <div class="courses-section current-section main-padding">
+    
+      <?php 
+        $my_courses = get_my_courses($current_user_id);
+
+        $courses_query = new WP_Query(array(
+          'post_type' => 'courses',
+          'post__in'  => $user_courses
+        ));
+
+        if ( $courses_query->have_posts() ) :
+          while( $courses_query->have_posts() ) :
+            $courses_query->the_post();
+            $index = $courses_query->current_post;
+            $my_score = $my_courses[$index]['score'];
+            $my_course_id = $my_courses[$index]['course']->ID;
+      ?>
+
+        <div class="flex-container align-center small-padding">
+          <img
+            src="<?php 
+              if ( passing_score((int)$my_score) ) {
+                echo IMAGESPATH . '/check-mark.svg';
+              } else {
+                echo IMAGESPATH . '/cross-mark.svg';
+              }
+            ?>"
+            alt="Pass/Fail"
+            class="small-thumbnail-image"
+            title="<?php echo passing_score((int)$my_score) ? "Passed" : "Failed"; ?>"
+          >
+          <p>
+            <?php the_title(); ?>
+            &nbsp;
+            <?php if ( passing_score((int)$my_score) ) : ?>
+              <a href="#0">
+                View Certificate
+              </a>
+            <?php else : ?>
+              <a href="<?php echo get_permalink($my_course_id); ?>">
+                Take course
+              </a>
+            <?php endif; ?>
+          </p>
+        </div>
+
+      <?php
+        endwhile;
+          else :
+            get_template_part( 'templates/no_courses_message'); 
+      ?>
+
+      <?php endif; ?>
+
+    </div>
   
-    <div class="profile-details-section current-section main-padding">
+    <div class="profile-details-section main-padding">
   
       <form class="profile-details max-width-900 main-grid-container" enctype="multipart/form-data">
       
@@ -44,7 +97,7 @@
             type="text"
             name="full-name"
             id="full-name"
-            value="<?php echo $current_user->first_name; ?>"
+            value="<?php echo $current_user->first_name . " " . $current_user->last_name; ?>"
           >
         </label>
 
@@ -87,113 +140,10 @@
             value="<?php echo $user_date_of_birth; ?>"
           >
         </label>
-        
-        <label for="upload-passport">
-          <?php if ($user_passport_id) : ?>
-            ID or Passport
-            <a
-              href="<?php echo $user_passport_file['url']; ?>"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex-container align-items-center small-padding"
-            >
-              <img
-                class="thumbnail-image"
-                src="<?php echo IMAGESPATH . '/default.svg'; ?>"
-                alt="default file"
-              >
-              <?php echo $user_passport_file['filename']; ?>
-            </a>
-          <?php else : ?>
-            Upload ID or Passport
-            <input
-              type="file"
-              id="upload-passport"
-              name="upload-passport"
-              accept=".jpg,.jpeg,.png,.pdf"
-            >
-          <?php endif; ?>
-        </label>
-
-        <label for="upload-company-letter">
-          Company Letter
-          <?php if ($user_company_letter) : ?>
-            <a
-              href="<?php echo $user_company_letter['url']; ?>"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex-container align-items-center small-padding"
-            >
-              <img
-                class="thumbnail-image"
-                src="<?php echo IMAGESPATH . '/default.svg'; ?>"
-                alt="default file"
-              >
-              <?php echo $user_company_letter['filename']; ?>
-            </a>
-          <?php else : ?>
-            Upload Company Letter
-            <input
-              type="file"
-              name="upload-company-letter"
-              id="upload-company-letter"
-              accept=".jpg,.jpeg,.png,.pdf"
-            >
-          <?php endif; ?>
-        </label>
-
-        <label for="upload-license">
-          Upload License
-          <input
-            type="file"
-            name="upload-license"
-            id="upload-license"
-            accept=".jpg,.jpeg,.png,.pdf"
-          >
-        </label>
 
         <button type="submit">Update Profile Details</button>
       
       </form>
-  
-    </div>
-  
-    <div class="courses-section main-padding">
-  
-      <?php 
-        $courses_query = new WP_Query(array(
-          'post_type' => 'courses',
-          'post__in'  => $user_courses
-        ));
-
-        if ( $courses_query->have_posts() ) :
-          while( $courses_query->have_posts() ) :
-            $courses_query->the_post();
-      ?>
-
-            <div class="flex-container align-center small-padding">
-              <img
-                src="<?php echo IMAGESPATH . '/check-mark.svg'; ?>"
-                alt="Checkmark"
-                class="small-thumbnail-image"
-              >
-              <p>
-                <?php the_title(); ?>
-                &nbsp;
-                <a href="#0">
-                  View Certificate
-                  <i class="fa fa-external-link-alt"></i>
-                </a>
-              </p>
-            </div>
-
-      <?php
-        endwhile;
-          else :
-            get_template_part( 'templates/no_courses_message'); 
-      ?>
-
-      <?php endif; ?>
   
     </div>
   

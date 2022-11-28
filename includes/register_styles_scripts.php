@@ -42,7 +42,21 @@ function register_styles_scripts() {
 
     wp_localize_script( 'course_navigation', 'course_obj', array(
       'ajax_url' => admin_url( 'admin-ajax.php' ),
-      'security' => wp_create_nonce( 'course_nonce' )
+      'security' => wp_create_nonce('course_nonce'),
+      'course_id' => get_the_ID(),
+      'user_id' => get_current_user_id()
+    ));
+
+    wp_enqueue_script(
+      'theoretical_exam',
+      THEMEROOT . '/js/theoretical-exam.js',
+      array(),
+      THEMEVERSION, true
+    );
+
+    wp_localize_script( 'theoretical_exam', 'exam_obj', array(
+      'ajax_url' => admin_url( 'admin-ajax.php' ),
+      'security' => wp_create_nonce( 'exam_nonce' )
     ));
 
   }

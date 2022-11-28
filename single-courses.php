@@ -109,6 +109,8 @@ $back = wp_get_referer();
           
           $row_index = get_row_index();
 
+
+
     ?>
 
       <section id="<?php echo the_slug_sub_field('course_section_title'); ?>">
@@ -155,61 +157,96 @@ $back = wp_get_referer();
 
       <h2>Exam Questions</h2>
 
-      <?php
+      <form id="theoretical-exam">
 
-        while( have_rows('theorical_exam_questions') ) :
+        <?php
 
-          the_row(); 
-          
+          while( have_rows('theorical_exam_questions') ) :
+
+            the_row(); 
+
             if ( get_row_layout() === 'best_answer' ) :
 
-          ?>
+            ?>
 
-          <!-- Add table for best answer with radio button -->
-          <h3><?php echo get_row_index() . '. ' . get_sub_field( 'question_text' ); ?></h3>
+              <h3><?php echo get_row_index() . '. ' . get_sub_field( 'question_text' ); ?></h3>
 
-          <div class="choices">
-          
-            <?php for ($i = 1; $i <= 4; $i++) : ?>
+                <?php for ($i = 1; $i <= 7; $i++) : ?>
 
-              <p class="checkbox-grid">
+                  <?php if (get_sub_field('choice_' . $i)) : ?>
+
+                    <p class="checkbox-grid <?php echo 'checkbox-' . $i;?>">
+
+                      <input
+                        type="radio"
+                        name="question_<?php echo get_row_index(); ?>"
+                        value="choice_<?php echo $i; ?>"
+                        id="selected_choice_<?php echo get_row_index() . '_' . $i; ?>"
+                        required
+                      >
+
+                      <label for="selected_choice_<?php echo get_row_index() . '_' . $i; ?>">
+
+                        <?php the_sub_field('choice_' . $i); ?>
+
+                      </label>
+
+                    </p>
+
+                  <?php endif; ?>
+
+                <?php endfor; ?>
+              
+            <?php elseif ( get_row_layout() === 'true_or_false' ) : ?>
+            
+              <h3><?php echo get_row_index() . '. ' . get_sub_field( 'question' );  ?></h3>
+
+              <p class="checkbox-grid checkbox-1">
 
                 <input
                   type="radio"
-                  name="best_choice_<?php echo get_row_index(); ?>"
-                  value="choice_<?php echo $i; ?>"
-                  id="choice_<?php echo get_row_index() . '_' . $i; ?>"
+                  name="true_false_<?php echo get_row_index(); ?>"
+                  value="true"
+                  id="true_false_<?php echo get_row_index() . '_' . $i; ?>"
+                  required
                 >
 
-                <label for="choice_<?php echo get_row_index() . '_' . $i; ?>">
+                <label for="true_false_<?php echo get_row_index() . '_' . $i; ?>">
 
-                  <?php the_sub_field('choice_' . $i); ?>
+                  True
 
                 </label>
 
               </p>
 
-            <?php endfor; ?>
-          
-          </div>
+              <p class="checkbox-grid checkbox-2">
 
-          <?php elseif ( get_row_layout() === 'fill_in_the_blank' ) : ?>
-          
-          <h2>Fill in the Blank</h2>
+                <input
+                  type="radio"
+                  name="true_false_<?php echo get_row_index(); ?>"
+                  value="false"
+                  id="true_false_<?php echo get_row_index() . '_' . $i; ?>"
+                  required
+                >
 
-          <?php elseif ( get_row_layout() === 'essay_question' ) : ?>
+                <label for="true_false_<?php echo get_row_index() . '_' . $i; ?>">
 
-          <h2>Essay Question</h2>
+                  False
 
-          <?php endif; ?>
+                </label>
 
-      <?php endwhile; endif; ?>
+              </p>
+            <?php endif; ?>
 
-      <button class="secondary-button submit-answers">
-      
-        Submit Answers
-      
-      </button>
+        <?php endwhile; endif; ?>
+
+        <button class="secondary-button submit-answers">
+        
+          Submit Answers
+        
+        </button>
+
+      </form>
     
     </section>
 

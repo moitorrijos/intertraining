@@ -1,7 +1,17 @@
 <div class="main-container main-padding">
 
   <?php
-  
+
+    $current_user_id = get_current_user_id();
+    $current_user = wp_get_current_user();
+
+    $is_student = $current_user->roles[0] === 'student';
+
+    if ($is_student) {
+      $my_courses = get_my_courses_id($current_user_id);
+    }
+
+
     if( have_posts() ) : while( have_posts() ) : the_post();
 
     the_title('<h1 class="centered-text">', '</h1>');
@@ -26,6 +36,10 @@
         'posts_per_page'  => 12,
         'paged'           => get_query_var( 'paged' )
       );
+
+      if ($is_student) {
+        $courses_query_args['post__in'] = $my_courses;
+      }
 
       $query_courses = new WP_Query( $courses_query_args );
 
@@ -75,12 +89,12 @@
 
     <?php
     
-      $big = 999999999; // need an unlikely integer
+      $big = 999;
       echo paginate_links( array(
-          'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
-          'format' => '?paged=%#%',
+          'base'    => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+          'format'  => '?paged=%#%',
           'current' => max( 1, get_query_var('paged') ),
-          'total' => $query_courses->max_num_pages
+          'total'   => $query_courses->max_num_pages
       ) );
 
       wp_reset_query();

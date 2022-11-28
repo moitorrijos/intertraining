@@ -16,6 +16,7 @@ img
 h1, h2, h3, h4
   font-family: $header-font-family
   color: $primary-color
+  max-width: 67ch
 
 p, ul, ol
   font-family: $body-font-family
@@ -60,22 +61,6 @@ p
   animation-name: shake
 
 $button-width: 320px
-
-@keyframes loadingSubmit
-	0%
-		background-position-x: 0
-	100%
-		background-position-x: $button-width
-
-.loading-animation
-		background: linear-gradient(to right, $primary-color, $secondary-color, $primary-color)
-		background-size: $button-width
-		animation:
-			duration: 1.5s
-			fill-mode: forwards
-			iteration-count: infinite
-			timing-function: linear
-			name: loadingSubmit
 
 .main-container
   margin-left: auto
@@ -245,3 +230,28 @@ span.undies
     height: 20px
     position: relative
     top: 5px
+
+
+@keyframes loadingSubmit
+	0%
+		background-position-x: 0
+	100%
+		background-position-x: $button-width
+
+.loading-animation
+  pointer-events: none
+  opacity: 0.75
+  background: linear-gradient(to right, $primary-color, $secondary-color, $primary-color)
+  background-size: $button-width
+  animation:
+    duration: 1.5s
+    fill-mode: forwards
+    iteration-count: infinite
+    timing-function: linear
+    name: loadingSubmit
+
+.disabled-button
+  opacity: 0.75
+  pointer-events: none
+  background-color: $gray;
+  color: $dark-gray;

@@ -6,8 +6,6 @@
   const header = document.querySelector('header.course-header')
   const post_id = header.dataset.postId
 
-  console.log(post_id)
-
   function showSelectedSection( hash ) {
     //1. set all sections to display none
     Array.from(document.querySelectorAll('section')).forEach( section => {

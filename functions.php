@@ -26,6 +26,7 @@ require get_template_directory() . '/includes/remove_admin_bar.php';
  */
 require get_template_directory() . '/includes/ajax_login.php';
 require get_template_directory() . '/includes/update_latest_position.php';
+require get_template_directory() . '/includes/theoretical-exam.php';
 
 /**
  * Post Types
@@ -50,4 +51,36 @@ add_filter('admin_menu', 'moi_hide_posts_and_comments_admin_menu');
 function the_slug_sub_field( string $field_name ) {
   $field = get_sub_field( $field_name );
   return strtolower(str_replace( array(' ', ':'), array('-', ''), $field ));
+}
+
+function get_my_courses_id($current_user_id) {
+  $my_courses = [];
+  if( have_rows('courses', 'user_' . $current_user_id) ):
+    while( have_rows('courses', 'user_' . $current_user_id) ) : the_row();
+      array_push($my_courses, get_sub_field('course_name', 'user_' . $current_user_id)->ID);
+    endwhile;
+  endif;
+  return $my_courses;
+}
+
+function get_my_courses($current_user_id) {
+  $my_courses = [];
+  if (have_rows('courses', 'user_' . $current_user_id)) :
+    while (have_rows('courses', 'user_' . $current_user_id)) : the_row();
+      $my_courses[] = [
+        'course' => get_sub_field('course_name', 'user_' . $current_user_id),
+        'score' => get_sub_field('exam_score'),
+        'exam_answers' => json_decode(get_sub_field('exam_answers')),
+      ];
+    endwhile;
+  endif;
+  return $my_courses;
+}
+
+function passing_score($score) {
+  if ($score >= 70) {
+    return true;
+  } else {
+    return false;
+  }
 }
