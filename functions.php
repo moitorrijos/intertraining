@@ -78,9 +78,19 @@ function get_my_courses($current_user_id) {
 }
 
 function passing_score($score) {
-  if ($score >= 70) {
+  if ($score >= 80) {
     return true;
   } else {
     return false;
   }
+}
+
+function is_course_submitted( $user_id, $course_id ) {
+  $my_courses = get_my_courses( $user_id );
+  // filter my courses by course id
+  $filtered_courses = array_filter( $my_courses, function( $course ) use ( $course_id ) {
+    return $course['course']->ID === $course_id;
+  } );
+  // if the size of the array is 0, then the course has not been submitted
+  return count( $filtered_courses ) > 0;
 }

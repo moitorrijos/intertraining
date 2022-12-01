@@ -239,12 +239,25 @@ $back = wp_get_referer();
             <?php endif; ?>
 
         <?php endwhile; endif; ?>
+        
+        <?php
+          $user_id = get_current_user_id();
+          $course_id = get_the_ID();
+          $course_submitted = is_course_submitted( $user_id, $course_id );
+        ?>
 
-        <button class="secondary-button submit-answers">
-        
-          Submit Answers
-        
+        <button
+          class="secondary-button submit-answers <?php echo $course_submitted ? 'disabled-button' : ''; ?>"
+          <?php if ($course_submitted) { echo "disabled"; } ?>
+        >
+          <?php echo $course_submitted ? 'Your answers have been submitted' : 'Submit Answers'; ?>
         </button>
+
+        <?php if ($course_submitted) : ?>
+
+          <a class="secondary-button" href="<?php echo get_permalink(51127); ?>">Get Certificate</a>
+
+        <?php endif; ?>
 
       </form>
     

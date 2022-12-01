@@ -23,7 +23,7 @@ p, ul, ol
 
 p
   margin: 1rem 0
-  max-width: 75ch
+  max-width: 80ch
 
 @mixin button($color, $bg-color)
   text-decoration: none
@@ -90,6 +90,10 @@ $button-width: 320px
 
 .justify-between
   justify-content: space-between
+
+.centered
+  display: block
+  margin-inline: auto
 
 .centered-text
   text-align: center
@@ -180,6 +184,9 @@ a.course-card
   button
     @include button($white, $green)
 
+.text-centered
+  text-align: center
+
 form
   input, textarea
     padding: 10px 1rem
@@ -255,3 +262,6 @@ span.undies
   pointer-events: none
   background-color: $gray;
   color: $dark-gray;
+
+.save-as-pdf-pdfcrowd-button-hover
+  @include button($white, $secondary-color)

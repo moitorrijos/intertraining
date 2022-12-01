@@ -12,11 +12,11 @@
       <?php echo get_custom_logo(); ?>
     </div>
   
-    <div class="search-form">
+    <!-- <div class="search-form">
   
-      <?php get_search_form(); ?>
+      <?php // get_search_form(); ?>
   
-    </div>
+    </div> -->
   
     <div class="navigation">
   

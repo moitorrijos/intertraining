@@ -68,7 +68,20 @@ function register_styles_scripts() {
       THEMEROOT . '/js/profile.js',
       array(), THEMEVERSION, true 
     );
-    
+  }
+
+  if ( is_page_template('page-certificate.php') ) {
+    wp_enqueue_script(
+      'html2pdf',
+      'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js',
+      array(), THEMEVERSION, true
+    );
+
+    wp_enqueue_script(
+      'certificate',
+      THEMEROOT . '/js/certificate.js',
+      array('html2pdf'), THEMEVERSION, true
+    );
   }
 }
 

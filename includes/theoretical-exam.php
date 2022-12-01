@@ -15,7 +15,7 @@ function theoretical_exam() {
   $user_id = get_current_user_id();
   $exam_course_id = (int) $exam['course_id'];
   $my_courses = [];
-  while (have_rows('courses', 'user_' . $user_id)) {
+  while ( have_rows('courses', 'user_' . $user_id) ) {
     the_row();
     $my_courses[] = get_sub_field('course_name');
   }

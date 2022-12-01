@@ -1,0 +1,97 @@
+$print-width: 8.5in
+$padding-top: 1.125in
+$padding-inline: 0.75in
+$padding-bottom: 0.125in
+  
+.certificate-page
+  background-image: url('../images/icsclass-certificate-header.png')
+  background-repeat: no-repeat
+  background-position: center 0.25in
+  background-size: contain
+  position: relative
+  max-width: $print-width
+  height: 10.5in
+  width: 100%
+  margin-inline: auto
+  padding: $padding-top $padding-inline $padding-bottom
+  font-size: 0.9rem
+  box-shadow: 0 0 0.5in -0.25in rgba(0,0,0,0.5)
+
+  h2, h1, p
+    margin: 0.25rem 0
+
+  p
+    max-width: none
+    line-height: 1.5
+
+  hr
+    border: 0
+    border-top: 2px solid $dark-gray
+
+  table
+    width: 100%
+    margin: 0.75rem 0
+
+    th, td
+      padding: 0.25rem 
+
+    td
+      border-bottom: 1px solid $gray
+
+      img
+        margin-inline: auto
+        width: 0.125in
+        height: 0.125in
+
+    thead
+      tr
+        background-color: lighten($dark-gray, 25%)
+        color: $white
+        font-size: 0.8rem
+        text-transform: uppercase
+        letter-spacing: 1px
+        th:first-child
+          text-align: left
+
+.certificate-icon
+  width: 1rem
+  height: auto
+  margin-inline: auto
+
+.issue-date
+  display: grid
+  gap: 1rem
+  grid-template-columns: 3fr 1fr
+  align-items: center
+
+.date
+  p
+    margin: 0
+    text-align: center
+    line-height: 1.1
+
+.signature-seal
+  position: absolute
+  bottom: $padding-bottom
+  left: $padding-inline
+  right: $padding-inline
+  display: flex
+  flex-flow: row nowrap
+  justify-content: flex-end
+  align-items: center
+  max-width: $print-width
+  gap: 1rem
+
+.signature
+  background-image: url('../images/firma-samper.png')
+  background-repeat: no-repeat
+  background-position: center top
+  padding-top: 4rem
+  width: 300px
+  margin-inline: auto
+  text-align: center
+  line-height: 1
+
+.sello
+  width: 120px
+  height: 120px
