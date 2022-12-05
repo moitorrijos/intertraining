@@ -1,5 +1,5 @@
-<button class="not-for-print primary-button centered" id="save2pdf">
-  <?php get_template_part('template/printing'); ?>
+<button class="not-for-print primary-button centered-container flex-container align-items-center" id="save2pdf">
+  <img class="icon" src="<?php echo IMAGESPATH . "/download-pdf.svg"; ?>" alt="Save as PDF" />
   Download Certificate
 </button>
 <div class="certificate-page">
