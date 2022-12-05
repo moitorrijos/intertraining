@@ -149,21 +149,24 @@
   
     <div class="change-password-section main-padding">
   
-      <form class="change-password max-width-400 one-column-margin">
+      <form id="change-password" class="change-password max-width-400 one-column-margin">
       
-        <label for="change-password">
+        <label for="new-password">
           New Password
-          <input type="password" name="change-password" id="change-password">
+          <input type="password" name="new-password" id="new-password">
         </label>
 
-        <label for="change-password-confirmation">
+        <label for="new-password-confirmation">
           Confirm Password
           <input
             type="password"
-            name="change-password-confirmation"
-            id="change-password-confirmation"
+            name="confirm-password"
+            id="confirm-password"
           >
         </label>
+
+        <p class="error-message"></p>
+        <p class="success-message">Password has been updated successfully.</p>
 
         <button type="submit">Change Password</button>
       

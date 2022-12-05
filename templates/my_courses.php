@@ -6,6 +6,7 @@
     $current_user = wp_get_current_user();
 
     $is_student = $current_user->roles[0] === 'student';
+    var_export($is_student);
 
     if ($is_student) {
       $my_courses = get_my_courses_id($current_user_id);

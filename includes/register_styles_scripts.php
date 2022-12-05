@@ -68,6 +68,17 @@ function register_styles_scripts() {
       THEMEROOT . '/js/profile.js',
       array(), THEMEVERSION, true 
     );
+
+    wp_enqueue_script(
+      'change_password',
+      THEMEROOT . '/js/change-password.js',
+      array(), THEMEVERSION, true
+    );
+
+    wp_localize_script('change_password', 'new_pass_obj', array(
+      'ajax_url' => admin_url( 'admin-ajax.php' ),
+      'security' => wp_create_nonce( 'new_pass_nonce' )
+    ));
   }
 
   if ( is_page_template('page-certificate.php') ) {
