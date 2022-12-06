@@ -25,9 +25,9 @@ require get_template_directory() . '/includes/remove_admin_bar.php';
  * Ajax Calls
  */
 require get_template_directory() . '/includes/ajax_login.php';
-require get_template_directory() . '/includes/update_latest_position.php';
 require get_template_directory() . '/includes/theoretical-exam.php';
 require get_template_directory() . '/includes/change-password.php';
+// require get_template_directory() . '/includes/update_latest_position.php';
 
 /**
  * Post Types
