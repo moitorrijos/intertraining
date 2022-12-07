@@ -42,7 +42,7 @@ function register_styles_scripts() {
 
     wp_localize_script( 'course_navigation', 'course_obj', array(
       'ajax_url' => admin_url( 'admin-ajax.php' ),
-      'security' => wp_create_nonce('course_nonce'),
+      'security' => wp_create_nonce( 'course_nonce' ),
       'course_id' => get_the_ID(),
       'user_id' => get_current_user_id()
     ));
@@ -56,14 +56,15 @@ function register_styles_scripts() {
 
     wp_localize_script( 'theoretical_exam', 'exam_obj', array(
       'ajax_url' => admin_url( 'admin-ajax.php' ),
-      'security' => wp_create_nonce( 'exam_nonce' )
+      'security' => wp_create_nonce( 'exam_nonce' ),
+      'redirect_url' => get_permalink( 51127 )
     ));
 
   }
 
   if ( is_page( 51127 ) ) {
 
-    wp_enqueue_script( 
+    wp_enqueue_script(
       'profile',
       THEMEROOT . '/js/profile.js',
       array(), THEMEVERSION, true 

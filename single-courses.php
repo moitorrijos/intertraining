@@ -243,16 +243,21 @@ $back = wp_get_referer();
         <?php
           $user_id = get_current_user_id();
           $course_id = get_the_ID();
+          $course_passed = is_course_passed( $user_id, $course_id );
           $course_submitted = is_course_submitted( $user_id, $course_id );
         ?>
         <?php if (!$course_submitted) : ?>
           <button class="secondary-button submit-answers">
             Submit Answers
           </button>
+        <?php elseif ($course_submitted && !$course_passed) : ?>
+          <button class="secondary-button submit-answers">
+            Your score is less than passing. Try again.
+          </button>
         <?php else : ?>
           <p class="submitted-message">
             You have already submitted your answers for this course.
-            <a href="<?php echo get_permalink(51127); ?>">Get Certificate</a>
+            <a href="<?php echo get_permalink( 51371 ); ?>">Get Certificate</a>
           </p>
         <?php endif; ?>
       </form>

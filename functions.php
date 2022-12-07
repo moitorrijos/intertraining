@@ -86,12 +86,22 @@ function passing_score($score) {
   }
 }
 
+function is_course_passed( $user_id, $course_id ) {
+  $my_courses = get_my_courses( $user_id );
+  // filter my courses by course id
+  $filtered_courses = array_filter( $my_courses, function( $course ) use ( $course_id ) {
+    return $course['course']->ID === $course_id;
+  } );
+  $exam_score = array_values($filtered_courses)[0]['score'];
+  return ((int) $exam_score >= 80);
+}
+
 function is_course_submitted( $user_id, $course_id ) {
   $my_courses = get_my_courses( $user_id );
   // filter my courses by course id
   $filtered_courses = array_filter( $my_courses, function( $course ) use ( $course_id ) {
     return $course['course']->ID === $course_id;
   } );
-  // if the size of the array is 0, then the course has not been submitted
-  return count( $filtered_courses ) > 0;
+  $answers = array_values($filtered_courses)[0]['exam_answers'];
+  return (boolval($answers));
 }

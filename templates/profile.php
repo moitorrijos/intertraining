@@ -47,12 +47,14 @@
             $index = $courses_query->current_post;
             $my_score = $my_courses[$index]['score'];
             $my_course_id = $my_courses[$index]['course']->ID;
+            $course_passed = is_course_passed( $current_user_id, $my_course_id );
+            $course_submitted = is_course_submitted( $current_user_id, $my_course_id );
       ?>
 
         <div class="flex-container align-center small-padding">
           <img
             src="<?php 
-              if ( passing_score((int)$my_score) ) {
+              if ( $course_passed ) {
                 echo IMAGESPATH . '/check-mark.svg';
               } else {
                 echo IMAGESPATH . '/cross-mark.svg';
@@ -60,18 +62,22 @@
             ?>"
             alt="Pass/Fail"
             class="small-thumbnail-image"
-            title="<?php echo passing_score((int)$my_score) ? "Passed" : "Failed"; ?>"
+            title="<?php echo $course_passed ? "Passed" : "Failed"; ?>"
           >
           <p>
             <?php the_title(); ?>
             &nbsp;
-            <?php if ( passing_score((int)$my_score) ) : ?>
-              <a href="#0">
-                View Certificate
+            <?php if ( !$course_submitted ) : ?>
+              <a href="<?php echo get_permalink($my_course_id); ?>">
+                Take course here
+              </a>
+            <?php elseif ( $course_submitted && !$course_passed ) : ?>
+              <a href="<?php echo get_permalink($my_course_id); ?>">
+                You have not passed this course. Try again.
               </a>
             <?php else : ?>
-              <a href="<?php echo get_permalink($my_course_id); ?>">
-                Take course
+              <a href="<?php echo get_permalink( 51371 ); ?>">
+                View Certificate
               </a>
             <?php endif; ?>
           </p>

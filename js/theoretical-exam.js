@@ -16,6 +16,9 @@
         submitButton.classList.remove('loading-animation')
         submitButton.classList.add('disabled-button')
         submitButton.textContent = "Your answers have been submitted successfully"
+        window.setTimeout(() => {
+          window.location = course_obj.redirect_url
+        }, 600)
       }).catch(error => {
         console.error(error)
         submitButton.classList.remove('loading-animation')
