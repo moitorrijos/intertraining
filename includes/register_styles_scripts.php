@@ -93,6 +93,19 @@ function register_styles_scripts() {
     ));
   }
 
+  if ( is_page( 51125 ) ) {
+    wp_enqueue_script(
+      'support',
+      THEMEROOT . '/js/support.js',
+      array(), THEMEVERSION, true
+    );
+
+    wp_localize_script('support', 'support_obj', array(
+      'ajax_url' => admin_url( 'admin-ajax.php' ),
+      'security' => wp_create_nonce( 'support_nonce' )
+    ));
+  }
+
   if ( is_page_template('page-certificate.php') ) {
     wp_enqueue_script(
       'html2pdf',
