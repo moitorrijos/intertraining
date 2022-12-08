@@ -17,7 +17,7 @@
         submitButton.classList.add('disabled-button')
         submitButton.textContent = "Your answers have been submitted successfully"
         window.setTimeout(() => {
-          window.location = course_obj.redirect_url
+          window.location.href = course_obj.redirect_url
         }, 600)
       }).catch(error => {
         console.error(error)

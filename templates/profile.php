@@ -12,7 +12,7 @@
   $user_nationality = get_field('nationality', 'user_' . $current_user_id);
   $user_passport_id = get_field('passportid_no', 'user_' . $current_user_id);
   $user_date_of_birth = get_field('date_of_birth', 'user_' . $current_user_id);
-  $user_date_of_birth = $user_date_of_birth ? DateTime::createFromFormat('Ymd', $user_date_of_birth)->format('j F Y') : '';
+  $user_date_of_birth = $user_date_of_birth ? DateTime::createFromFormat('Ymd', $user_date_of_birth)->format('Y-m-d') : '';
 ?>
 
 <div class="main-container main-padding fill-height">
@@ -95,15 +95,25 @@
   
     <div class="profile-details-section main-padding">
   
-      <form class="profile-details max-width-900 main-grid-container" enctype="multipart/form-data">
+      <form id="change-details" class="profile-details max-width-900 main-grid-container" enctype="multipart/form-data">
       
-        <label for="full-name">
-          Full Name
+        <label for="first-name">
+          First Names
           <input
             type="text"
-            name="full-name"
-            id="full-name"
-            value="<?php echo $current_user->first_name . " " . $current_user->last_name; ?>"
+            name="first-name"
+            id="first-name"
+            value="<?php echo $current_user->first_name; ?>"
+          >
+        </label>
+
+        <label for="last-name">
+          Last Names
+          <input
+            type="text"
+            name="last-name"
+            id="last-name"
+            value="<?php echo $current_user->last_name; ?>"
           >
         </label>
 
@@ -127,7 +137,7 @@
           >
         </label>
 
-        <label for="Nationality">
+        <label for="nationality">
           Nationality
           <input
             type="text"
@@ -140,12 +150,18 @@
         <label for="date-of-birth">
           Date of Birth
           <input
-            type="text"
+            type="date"
             name="date-of-birth"
             id="date-of-birth"
             value="<?php echo $user_date_of_birth; ?>"
           >
         </label>
+
+        <p class="error-message-details"></p>
+
+        <p class="success-message-details">
+          Profile details have been updated successfully.
+        </p>
 
         <button type="submit">Update Profile Details</button>
       
