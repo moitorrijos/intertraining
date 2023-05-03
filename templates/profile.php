@@ -49,6 +49,9 @@
             $my_course_id = $my_courses[$index]['course']->ID;
             $course_passed = is_course_passed( $current_user_id, $my_course_id );
             $course_submitted = is_course_submitted( $current_user_id, $my_course_id );
+
+            var_dump($course_passed);
+            var_dump($course_submitted);
       ?>
 
         <div class="flex-container align-center small-padding">
@@ -76,7 +79,7 @@
                 You have not passed this course. Try again.
               </a>
             <?php else : ?>
-              <a href="<?php echo get_permalink( 51371 ); ?>">
+              <a href="<?php echo get_permalink( 51387 ); ?>">
                 View Certificate
               </a>
             <?php endif; ?>
