@@ -70,7 +70,11 @@
           <p>
             <?php the_title(); ?>
             &nbsp;
-            <?php if ( !$course_submitted ) : ?>
+            <?php if ( $course_passed ) : ?>
+              <a href="<?php echo get_permalink( 51387 ); ?>">
+                View Certificate
+              </a>
+            <?php elseif ( !$course_submitted ) : ?>
               <a href="<?php echo get_permalink($my_course_id); ?>">
                 Take course here
               </a>
