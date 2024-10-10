@@ -50,8 +50,6 @@
             $course_passed = is_course_passed( $current_user_id, $my_course_id );
             $course_submitted = is_course_submitted( $current_user_id, $my_course_id );
 
-            var_dump($course_passed);
-            var_dump($course_submitted);
       ?>
 
         <div class="flex-container align-center small-padding">
