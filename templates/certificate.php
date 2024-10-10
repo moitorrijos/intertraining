@@ -27,6 +27,7 @@
             $course = get_sub_field('course_name');
             $exam_score = get_sub_field('exam_score');
             if (passing_score($exam_score)) :
+        
       ?>
         <tr>
           <td>
@@ -39,7 +40,12 @@
             >
           </td>
         </tr>
-      <?php endif; endwhile; endif; ?>
+      <?php 
+        endif; 
+        endwhile; 
+        endif; 
+        wp_reset_postdata();
+      ?>
     </tbody>
   </table>
   <div class="issue-date">

@@ -14,7 +14,7 @@ $padding-bottom: 0.125in
   width: 100%
   margin-inline: auto
   padding: $padding-top $padding-inline $padding-bottom
-  font-size: 0.9rem
+  font-size: 0.85rem
   box-shadow: 0 0 0.5in -0.25in rgba(0,0,0,0.5)
 
   h2, h1, p
@@ -73,14 +73,8 @@ $padding-bottom: 0.125in
 .signature-seal
   position: absolute
   bottom: $padding-bottom
-  left: $padding-inline
   right: $padding-inline
-  display: flex
-  flex-flow: row nowrap
-  justify-content: flex-end
-  align-items: center
-  max-width: $print-width
-  gap: 1rem
+  max-width: $print-width/2
 
 .signature
   background-image: url('../images/firma-samper.png')
@@ -93,5 +87,9 @@ $padding-bottom: 0.125in
   line-height: 1
 
 .sello
+  position: absolute
+  right: 90% 
+  top: 1rem
   width: 120px
   height: 120px
+  mix-blend-mode: overlay
