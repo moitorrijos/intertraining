@@ -14,7 +14,7 @@ $padding-bottom: 0.125in
   width: 100%
   margin-inline: auto
   padding: $padding-top $padding-inline $padding-bottom
-  font-size: 0.85rem
+  font-size: 0.8rem
   box-shadow: 0 0 0.5in -0.25in rgba(0,0,0,0.5)
 
   h2, h1, p
@@ -63,6 +63,8 @@ $padding-bottom: 0.125in
   gap: 1rem
   grid-template-columns: 3fr 1fr
   align-items: center
+  p
+    max-width: 40ch
 
 .date
   p
@@ -74,22 +76,26 @@ $padding-bottom: 0.125in
   position: absolute
   bottom: $padding-bottom
   right: $padding-inline
-  max-width: $print-width/2
+  width: $print-width
+  max-width: $print-width - 2 * $padding-inline
 
 .signature
   background-image: url('../images/firma-samper.png')
   background-repeat: no-repeat
-  background-position: center top
+  background-position: center 10px
   padding-top: 4rem
-  width: 300px
-  margin-inline: auto
+  width: 225px
+  margin-left: auto
+  margin-right: 120px
   text-align: center
   line-height: 1
 
 .sello
+  display: block
   position: absolute
-  right: 90% 
+  right: 0 
   top: 1rem
   width: 120px
   height: 120px
-  mix-blend-mode: overlay
+  z-index: -1
+  opacity: 0.75

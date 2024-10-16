@@ -10,7 +10,7 @@
   </h1>
   <hr>
   <p>
-    Has satisfactorily completed the following training modules based on the Appendix 2 - Specifications on the Survey & Certification functions of Recognized Organizations acting on behalf of the Flag State, established by the Code for Recognized Organizations (RO Code), according to IMO Resolutions MSC.349(92) and MEPC.237 (65):
+    Successfully completed the training modules per Appendix 2 of the RO Code, following IMO Resolutions MSC.349(92) and MEPC.237(65), on Survey & Certification functions for Recognized Organizations acting on behalf of the Flag State.
   </p>
   <table class="certificate-content">
     <thead>
@@ -21,17 +21,37 @@
     </thead>
     <tbody>
       <?php
-        $user_id = get_current_user_id();
-        if (have_rows('courses', 'user_' . $user_id)) :
-          while (have_rows('courses', 'user_' . $user_id)) : the_row();
-            $course = get_sub_field('course_name');
-            $exam_score = get_sub_field('exam_score');
-            if (passing_score($exam_score)) :
+        // $user_id = get_current_user_id();
+        // if (have_rows('courses', 'user_' . $user_id)) :
+        //   while (have_rows('courses', 'user_' . $user_id)) : the_row();
+        //     $course = get_sub_field('course_name');
+        //     $exam_score = get_sub_field('exam_score');
+        //     if (passing_score($exam_score)) :
+        $courses_query_args = array(
+        'post_type'       => 'courses',
+        'posts_per_page'  => 12,
+        'paged'           => get_query_var( 'paged' )
+      );
+
+      if ($is_student) {
+        $courses_query_args['post__in'] = $my_courses;
+      }
+
+      $query_courses = new WP_Query( $courses_query_args );
+
+      if ( $query_courses->have_posts() ) :
+        
+        while( $query_courses->have_posts() ) :
+          
+          $query_courses->the_post();
+
+          $latest_position = get_post_meta( get_the_ID(), 'latest_position', true );
         
       ?>
         <tr>
           <td>
-            <?php echo $course->post_title; ?>
+            <?php // echo $course->post_title; ?>
+            <?php the_title(); ?>
           </td>
           <td>
             <img
@@ -41,7 +61,7 @@
           </td>
         </tr>
       <?php 
-        endif; 
+        // endif; 
         endwhile; 
         endif; 
         wp_reset_postdata();
@@ -58,8 +78,7 @@
         <hr>
         <p>
           <strong>Eng. José Perez Samper</strong><br>
-          <small>Principal Surveyor</small><br>
-          <small>Trainer</small>
+          <small>Principal Surveyor/Trainer</small><br>
         </p>
       </div>
       <img class="sello" src="<?php echo IMAGESPATH . '/icsclass-logo-sello.png'; ?>" alt="Sello seco ICSClass">
