@@ -21,37 +21,32 @@
     </thead>
     <tbody>
       <?php
-        // $user_id = get_current_user_id();
-        // if (have_rows('courses', 'user_' . $user_id)) :
-        //   while (have_rows('courses', 'user_' . $user_id)) : the_row();
-        //     $course = get_sub_field('course_name');
-        //     $exam_score = get_sub_field('exam_score');
-        //     if (passing_score($exam_score)) :
-        $courses_query_args = array(
-        'post_type'       => 'courses',
-        'posts_per_page'  => 12,
-        'paged'           => get_query_var( 'paged' )
-      );
-
-      if ($is_student) {
-        $courses_query_args['post__in'] = $my_courses;
-      }
-
-      $query_courses = new WP_Query( $courses_query_args );
-
-      if ( $query_courses->have_posts() ) :
-        
-        while( $query_courses->have_posts() ) :
-          
-          $query_courses->the_post();
-
-          $latest_position = get_post_meta( get_the_ID(), 'latest_position', true );
-        
+      //   $courses_query_args = array(
+      //   'post_type'       => 'courses',
+      //   'posts_per_page'  => 12,
+      //   'paged'           => get_query_var( 'paged' )
+      // );
+      // if ($is_student) {
+      //   $courses_query_args['post__in'] = $my_courses;
+      // }
+      // $query_courses = new WP_Query( $courses_query_args );
+      // if ( $query_courses->have_posts() ) :
+      //   while( $query_courses->have_posts() ) :
+      //     $query_courses->the_post();
+      //     $latest_position = get_post_meta( get_the_ID(), 'latest_position', true );
+        $user_id = get_current_user_id();
+        if (have_rows('courses', 'user_' . $user_id)) :
+          while (have_rows('courses', 'user_' . $user_id)) : the_row();
+            $course = get_sub_field('course_name');
+            $exam_score = get_sub_field('exam_score');
+            if (passing_score($exam_score)) :
       ?>
         <tr>
           <td>
-            <?php // echo $course->post_title; ?>
-            <?php the_title(); ?>
+            <?php 
+              echo $course->post_title; 
+              // the_title();
+            ?>
           </td>
           <td>
             <img
@@ -61,7 +56,7 @@
           </td>
         </tr>
       <?php 
-        // endif; 
+        endif; 
         endwhile; 
         endif; 
         wp_reset_postdata();
