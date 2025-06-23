@@ -4,6 +4,8 @@ get_header();
 
 $back = wp_get_referer();
 
+if ( is_user_logged_in() ) :
+
 ?>
 
 <?php if( have_posts() ) : while( have_posts() ) : the_post(); ?>
@@ -269,5 +271,11 @@ $back = wp_get_referer();
 </div>
 
 <?php endwhile; endif; ?>
+
+<?php else : ?>
+
+<?php get_template_part('templates/login_modal'); ?>
+
+<?php endif; ?>
 
 <?php get_footer(); ?>
