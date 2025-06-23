@@ -1,21 +1,20 @@
 <?php
 
 /* Template Name: Support Page */
+get_header();
 
 if ( is_user_logged_in() ) {
 
-  get_header();
 
   get_template_part( 'templates/support' );
 
-  get_footer();
-
+  
 } else {
-
-  wp_redirect( home_url() );
-
-  exit;
-
+  
+  get_template_part('templates/login_modal');
+  
 }
+
+get_footer();
 
 ?>
