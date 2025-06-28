@@ -57,6 +57,14 @@ function theoretical_exam() {
   }
   $score = $score / count($correct_answers) * 100;
 
+  if ($score >= 80) {
+    update_sub_field(
+      array('courses', $row+1, 'date_of_completion'),
+      $exam['current_date'],
+      'user_' . $user_id
+    );
+  }
+
   update_sub_field(
     array('courses', $row+1, 'exam_score'),
     round($score),
