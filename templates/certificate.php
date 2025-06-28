@@ -16,24 +16,11 @@
     <thead>
       <tr>
         <th>Code: Description</th>
-        <th>Completed</th>
+        <th>Date of completion:</th>
       </tr>
     </thead>
     <tbody>
       <?php
-      //   $courses_query_args = array(
-      //   'post_type'       => 'courses',
-      //   'posts_per_page'  => 12,
-      //   'paged'           => get_query_var( 'paged' )
-      // );
-      // if ($is_student) {
-      //   $courses_query_args['post__in'] = $my_courses;
-      // }
-      // $query_courses = new WP_Query( $courses_query_args );
-      // if ( $query_courses->have_posts() ) :
-      //   while( $query_courses->have_posts() ) :
-      //     $query_courses->the_post();
-      //     $latest_position = get_post_meta( get_the_ID(), 'latest_position', true );
         $user_id = get_current_user_id();
         if (have_rows('courses', 'user_' . $user_id)) :
           while (have_rows('courses', 'user_' . $user_id)) : the_row();
@@ -45,14 +32,13 @@
           <td>
             <?php 
               echo $course->post_title; 
-              // the_title();
             ?>
           </td>
           <td>
-            <img
-              src="<?php echo IMAGESPATH . '/checking-square.png'; ?>"
-              alt="Checkmark"
-            >
+            <?php 
+              $completion_date = get_sub_field('date_of_completion');
+              var_dump($completion_date);
+            ?>
           </td>
         </tr>
       <?php 
@@ -65,15 +51,32 @@
   </table>
   <div class="issue-date">
     <p>
-      This certificate is issued by InterMaritime Certification Services Online Surveyor's Training Platform on:
+      This certificate is issued by
     </p>
   </div>
   <div class="signature-seal">
       <div class="signature">
+        <img src="<?php echo IMAGESPATH . '/firma-samper.png'; ?>" alt="">
         <hr>
         <p>
           <strong>Eng. José Perez Samper</strong><br>
           <small>Principal Surveyor/Trainer</small><br>
+        </p>
+      </div>
+      <div class="signature">
+      <img src="<?php echo IMAGESPATH . '/firma-jorge-luis.png'; ?>" alt="">
+        <hr>
+        <p>
+          <strong>Eng. Jorge Luis Lopez Ramos</strong><br>
+          <small>Senior Surveyor/Trainer</small><br>
+        </p>
+      </div>
+      <div class="signature">
+        <img src="<?php echo IMAGESPATH . '/firma-ruben-salcedo.png'; ?>" alt="">
+        <hr>
+        <p>
+          <strong>Eng. Ruben Salcedo</strong><br>
+          <small>Operations Manager/Trainer</small><br>
         </p>
       </div>
       <img class="sello" src="<?php echo IMAGESPATH . '/icsclass-logo-sello.png'; ?>" alt="Sello seco ICSClass">
