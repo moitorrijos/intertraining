@@ -78,23 +78,33 @@ $padding-bottom: 0.125in
   right: $padding-inline
   width: $print-width
   max-width: $print-width - 2 * $padding-inline
+  display: flex
+  gap: 1rem
 
 .signature
-  background-image: url('../images/firma-samper.png')
   background-repeat: no-repeat
   background-position: center 10px
   padding-top: 4rem
   width: 225px
   margin-left: auto
-  margin-right: 120px
   text-align: center
-  line-height: 1
+  position: relative
+  img
+    height: 5rem
+    width: auto
+    position: absolute
+    top: 0
+    left: 1rem
+    mix-blend-mode: multiply
+    z-index: -1
+  p
+    line-height: 1
 
 .sello
   display: block
   position: absolute
-  right: 0 
-  top: 1rem
+  right: -3rem 
+  bottom: 3rem
   width: 120px
   height: 120px
   z-index: -1
