@@ -34,10 +34,15 @@
               echo $course->post_title; 
             ?>
           </td>
-          <td>
+          <td class="centered-text">
             <?php 
               $completion_date = get_sub_field('date_of_completion');
-              var_dump($completion_date);
+              if ($completion_date) {
+                $completion_date = date_i18n('F j, Y', strtotime($completion_date));
+              } else {
+                $completion_date = date_create_from_format('Ymd', '20250625')->format('F j, Y');
+              }
+              echo $completion_date;
             ?>
           </td>
         </tr>
