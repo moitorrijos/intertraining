@@ -3,6 +3,13 @@
   Download Certificate
 </button>
 <div class="certificate-page">
+  <table class="certificate-header">
+    <tr>
+      <td>PE02-P02/R3</td>
+      <td>Training and Continuing Professional Development (CPD) Log for Surveyors and Auditors.</td>
+      <td>Versión 02</td>
+    </tr>
+  </table>
   <h2 class="text-centered">Certificate of Completion</h2>
   <p class="text-centered">This is to certify that</p>
   <h1 class="text-centered">
