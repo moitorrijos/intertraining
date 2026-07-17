@@ -95,7 +95,7 @@
       <img class="sello" src="<?php echo IMAGESPATH . '/icsclass-logo-sello.png'; ?>" alt="Sello seco ICSClass">
     </div>
     <div class="contact-info">
-      <p class="contact-info">
+      <p>
         To verify this certificate please contact ICSClass Head Office at <a href="mailto:info@intermaritime.org">info@intermaritime.org</a> or to <a href="mailto:ruben@intermaritime.org">ruben@intermaritime.org</a>.
       </p>
     </div>
