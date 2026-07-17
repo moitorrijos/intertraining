@@ -9,8 +9,10 @@ $padding-bottom: 0.125in
   background-position: center 0.25in
   background-size: contain
   position: relative
+  display: flex
+  flex-direction: column
   max-width: $print-width
-  height: 10.5in
+  min-height: 10.5in
   width: 100%
   margin-inline: auto
   padding: $padding-top $padding-inline $padding-bottom
@@ -41,6 +43,10 @@ $padding-bottom: 0.125in
     margin: 0.125rem 0
     line-height: 1.2
 
+  h1, h2
+    break-after: avoid
+    page-break-after: avoid
+
   p
     max-width: none
     line-height: 1.5
@@ -53,8 +59,12 @@ $padding-bottom: 0.125in
     width: 100%
     margin: 0.75rem 0
 
+    tr
+      break-inside: avoid
+      page-break-inside: avoid
+
     th, td
-      padding: 0.25rem 
+      padding: 0.25rem
 
     td
       border-bottom: 1px solid $gray
@@ -68,7 +78,8 @@ $padding-bottom: 0.125in
       tr
         background-color: lighten($dark-gray, 25%)
         color: $white
-        font-size: 0.8rem
+        font-size: 0.6rem
+        line-height: 1
         text-transform: uppercase
         letter-spacing: 1px
         th:first-child
@@ -79,11 +90,19 @@ $padding-bottom: 0.125in
   height: auto
   margin-inline: auto
 
+.certificate-footer
+  break-inside: avoid
+  page-break-inside: avoid
+  margin-top: auto
+  padding-top: 1in
+
 .issue-date
   display: grid
   gap: 1rem
   grid-template-columns: 3fr 1fr
   align-items: center
+  break-inside: avoid
+  page-break-inside: avoid
   p
     max-width: 40ch
 
@@ -94,13 +113,10 @@ $padding-bottom: 0.125in
     line-height: 1.1
 
 .signature-seal
-  position: absolute
-  bottom: $padding-bottom
-  right: $padding-inline
-  width: $print-width
-  max-width: $print-width - 2 * $padding-inline
   display: flex
   gap: 1rem
+  break-inside: avoid
+  page-break-inside: avoid
 
 .signature
   background-repeat: no-repeat
@@ -110,6 +126,8 @@ $padding-bottom: 0.125in
   margin-left: auto
   text-align: center
   position: relative
+  break-inside: avoid
+  page-break-inside: avoid
   img
     height: 5rem
     width: auto
@@ -123,10 +141,12 @@ $padding-bottom: 0.125in
 
 .sello
   display: block
-  position: absolute
-  right: -3rem 
-  bottom: 3rem
   width: 120px
   height: 120px
-  z-index: -1
   opacity: 0.75
+
+.contact-info
+  margin-top: 1rem
+  padding: 0.25rem 0.5rem
+  border-radius: 0.25rem
+  text-align: center
