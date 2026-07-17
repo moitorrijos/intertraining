@@ -7,7 +7,7 @@
     <tr>
       <td>PE02-P02/R3</td>
       <td>Training and Continuing Professional Development (CPD) Log for Surveyors and Auditors.</td>
-      <td>Versión 02</td>
+      <td>Version 03</td>
     </tr>
   </table>
   <h2 class="text-centered">Certificate of Completion</h2>
@@ -61,6 +61,7 @@
       ?>
     </tbody>
   </table>
+  <div class="certificate-footer">
   <div class="issue-date">
     <p>
       This certificate is issued by
@@ -92,5 +93,11 @@
         </p>
       </div>
       <img class="sello" src="<?php echo IMAGESPATH . '/icsclass-logo-sello.png'; ?>" alt="Sello seco ICSClass">
+    </div>
+    <div class="contact-info">
+      <p class="contact-info">
+        To verify this certificate please contact ICSClass Head Office at <a href="mailto:info@intermaritime.org">info@intermaritime.org</a> or to <a href="mailto:ruben@intermaritime.org">ruben@intermaritime.org</a>.
+      </p>
+    </div>
   </div>
 </div>

@@ -8,6 +8,7 @@ save2pdf.addEventListener("click", () => {
     filename: `certificate-${timestamp}.pdf`,
     image: { type: "jpg", quality: 0.98 },
     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    pagebreak: { mode: ["avoid-all", "css", "legacy"] },
   }
 
   html2pdf().set(options).from(certificatePage).save()
