@@ -1,11 +1,23 @@
 @media print
+  @page
+    size: A4 portrait
+    margin: 0
+
   .top-bar, header, .top-image, footer, .not-for-print
     display: none
 
-  .certificate-page
-    background-image: url('../images/icsclass-certificate-header.png')
-    background-repeat: no-repeat
-    background-position: center top
-    background-size: contain
-    h2
-      margin-top: 5rem
+  .certificate-viewport
+    overflow: visible
+    padding-bottom: 0
+
+  .certificate-document
+    gap: 0
+
+  .certificate-sheet
+    box-shadow: none
+    break-after: page
+    page-break-after: always
+
+    &:last-child
+      break-after: auto
+      page-break-after: auto

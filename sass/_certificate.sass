@@ -1,24 +1,79 @@
-$print-width: 8.5in
-$padding-top: 1.125in
-$padding-inline: 0.75in
-$padding-bottom: 0.125in
+// Sheet geometry is written onto .certificate-document by js/certificate.js so the
+// on-screen sheets match the PDF pages html2pdf slices out. The values below are the
+// A4-at-96dpi fallback used before the paginator runs (or if it never does).
+$sheet-padding-top: 0.16in
+$sheet-padding-inline: 0.6in
+$sheet-padding-bottom: 0.1in
+$pagination-height: 0.28in
 
-.certificate-page
-  background-image: url('../images/icsclass-certificate-header.png')
-  background-repeat: no-repeat
-  background-position: center 0.25in
-  background-size: contain
-  position: relative
+.certificate-viewport
+  overflow-x: auto
+  padding-bottom: 1rem
+
+.certificate-document
   display: flex
   flex-direction: column
-  max-width: $print-width
-  min-height: 10.5in
-  width: 100%
+  align-items: center
+  gap: 1.5rem
+  width: var(--sheet-width, 794px)
   margin-inline: auto
-  padding: $padding-top $padding-inline $padding-bottom
-  font-size: 0.8rem
-  box-shadow: 0 0 0.5in -0.25in rgba(0,0,0,0.5)
 
+  &.is-exporting
+    gap: 0
+
+    .certificate-sheet
+      box-shadow: none
+
+.certificate-sheet
+  flex: 0 0 auto
+  display: flex
+  flex-direction: column
+  position: relative
+  overflow: hidden
+  width: var(--sheet-width, 794px)
+  min-height: var(--sheet-height, 1122.5px)
+  background-color: $white
+  font-size: 0.8rem
+  box-shadow: 0 0 0.5in -0.25in rgba(0, 0, 0, 0.5)
+
+.certificate-letterhead
+  flex: 0 0 auto
+  display: block
+  width: 100%
+  height: auto
+
+.certificate-inner
+  flex: 1 1 auto
+  min-height: 0
+  display: flex
+  flex-direction: column
+  overflow: hidden
+  padding: $sheet-padding-top $sheet-padding-inline $sheet-padding-bottom
+
+.certificate-body
+  flex: 1 1 auto
+  min-height: 0
+  display: flex
+  flex-direction: column
+  overflow: hidden
+
+  > *
+    flex: 0 0 auto
+
+// Reserved on every sheet, whether or not it carries text, so that adding the
+// numbering after pagination can never change how much room the rows had.
+.sheet-pagination
+  flex: 0 0 auto
+  height: $pagination-height
+  padding: 0 $sheet-padding-inline
+  color: lighten($dark-gray, 25%)
+  font-size: 0.55rem
+  letter-spacing: 0.08em
+  line-height: $pagination-height
+  text-align: right
+  text-transform: uppercase
+
+.certificate-sheet
   table.certificate-header
     width: 100%
     margin-bottom: 0.5rem
@@ -43,10 +98,6 @@ $padding-bottom: 0.125in
     margin: 0.125rem 0
     line-height: 1.2
 
-  h1, h2
-    break-after: avoid
-    page-break-after: avoid
-
   p
     max-width: none
     line-height: 1.5
@@ -58,10 +109,6 @@ $padding-bottom: 0.125in
   table
     width: 100%
     margin: 0.75rem 0
-
-    tr
-      break-inside: avoid
-      page-break-inside: avoid
 
     th, td
       padding: 0.25rem
@@ -91,18 +138,14 @@ $padding-bottom: 0.125in
   margin-inline: auto
 
 .certificate-footer
-  break-inside: avoid
-  page-break-inside: avoid
   margin-top: auto
-  padding-top: 1in
+  padding-top: 0.5in
 
 .issue-date
   display: grid
   gap: 1rem
   grid-template-columns: 3fr 1fr
   align-items: center
-  break-inside: avoid
-  page-break-inside: avoid
   p
     max-width: 40ch
 
@@ -115,8 +158,6 @@ $padding-bottom: 0.125in
 .signature-seal
   display: flex
   gap: 1rem
-  break-inside: avoid
-  page-break-inside: avoid
 
 .signature
   background-repeat: no-repeat
@@ -126,8 +167,8 @@ $padding-bottom: 0.125in
   margin-left: auto
   text-align: center
   position: relative
-  break-inside: avoid
-  page-break-inside: avoid
+  // No negative z-index here: the sheet paints an opaque white background, which
+  // would swallow anything sitting behind it.
   img
     height: 5rem
     width: auto
@@ -135,7 +176,6 @@ $padding-bottom: 0.125in
     top: 0
     left: 1rem
     mix-blend-mode: multiply
-    z-index: -1
   p
     line-height: 1
 
