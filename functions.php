@@ -81,7 +81,7 @@ function get_my_courses($current_user_id) {
 }
 
 function passing_score($score) {
-  if ($score >= 80) {
+  if ($score >= 71) {
     return true;
   } else {
     return false;
