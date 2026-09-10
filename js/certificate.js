@@ -7,7 +7,7 @@ save2pdf.addEventListener("click", () => {
     margin: 0,
     filename: `certificate-${timestamp}.pdf`,
     image: { type: "jpg", quality: 0.98 },
-    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    jsPDF: { unit: "cm", format: "a4", orientation: "portrait" },
     pagebreak: { mode: ["css", "legacy"] },
   }
 
